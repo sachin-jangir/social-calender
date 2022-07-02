@@ -11,16 +11,26 @@ function bgColor(cssString) {
     return result[0].substr(18);
 }
 
-function color(cssString) {
-    if(!cssString) {
+function color(cssString, bgColor) {
+    console.log(cssString, bgColor)
+    if(!cssString && bgColor !== 'transparent') {
+        return 'white';
+    } else if(!cssString) {
         return 'black';
     }
-    const bgRegex = /color: rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\)/;
-    const result = cssString.match(bgRegex);
-    if(!result) {
+    const colorRegex = /(^color|;color): rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\)/;
+    const result = cssString.match(colorRegex);
+    console.log(result);
+    if(!result && bgColor !== 'transparent') {
+        return 'white';
+    } else if(!result) {
         return 'black';
     }
-    return result[0].substr(7);
+    let cssStr = result[0];
+    if(cssStr[0] !== 'c') {
+        cssStr = cssStr.substr(1);
+    }
+    return cssStr.substr(7);
 }
 
 // function dateColor(cssString) {
@@ -33,6 +43,9 @@ export default function ({ data }) {
     const calendarImgHeight = 100;
     const bgColorStyle = bgColor(data.card_color);
     const dateColor = bgColorStyle !== 'transparent' ? bgColorStyle : 'lightgrey';
+    const colorStyle = color(data.card_color, bgColorStyle);
+    console.log(colorStyle);
+    console.log("-------------------------------------------");
     const btnClass = 'btn btn-outline-' + (bgColorStyle !== 'transparent' ? 'light' : 'primary');
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3" style={{ marginBottom: (calendarImgHeight / 1.2) + 'px' }}>
@@ -41,7 +54,7 @@ export default function ({ data }) {
                 <p className="display-3 fw-bold" style={{ color: dateColor }}> {data.day_of_the_month}</p>
             </strong>
             <div
-                style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px', backgroundColor: bgColorStyle, color: color(data.card_color) }}
+                style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px', backgroundColor: bgColorStyle, color: colorStyle }}
                 className="rounded position-relative px-3 pt-3"
             >
                 <p className="fw-bold">{data.card_header}</p>
