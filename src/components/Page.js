@@ -17,7 +17,7 @@ const Page = () => {
 
   return (
     <div>
-        {0/* main header */}
+        {/* main header */}
         <div 
             className="d-flex justify-content-center align-items-center" 
             style={{ height:'300px', background: `url(${data1.calendar_banner_url})`, backgroundSize: 'cover' }}
