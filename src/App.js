@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-// import Page from "./components/Page";
+import Page from "./components/Page";
 import Date from "./components/Date";
 
 
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="row">
-      <Date />
+      <Page />
     </div>
   );
 }
