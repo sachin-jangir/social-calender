@@ -8,7 +8,7 @@ export default function ({data}) {
                 <p className="display-3 fw-bold"> { data.day_of_the_month }</p>
             </strong>
             <div 
-            style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px' }}
+            style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px', ...data.card_color }}
             className="bg-warning rounded position-relative px-3 pt-3">
                 <p className="fw-bold">{data.card_header}</p>
                 <p>{data.card_body}</p>
