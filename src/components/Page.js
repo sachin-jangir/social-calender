@@ -10,20 +10,18 @@ const Page = () => {
     function rows() {
         let arr = [];
         for(let i = 0; i<data1.days.length; i++) {
-          arr.push(
-            <Date data={data1.days[i]} />
-          
-            );
+          arr.push(<Date data={data1.days[i]} />);
         }
         return arr;
       }
 
   return (
     <div>
-
-        {/* main header */}
-        <div className="d-flex justify-content-center align-items-center" style={{height:'300px', background: `url(${data1.calendar_banner_url})` }}>
-
+        {0/* main header */}
+        <div 
+            className="d-flex justify-content-center align-items-center" 
+            style={{ height:'300px', background: `url(${data1.calendar_banner_url})`, backgroundSize: 'cover' }}
+        >
             <h3 className="mx-3 text-white">
                 <FaAngleLeft />
             </h3> 
@@ -31,15 +29,14 @@ const Page = () => {
             <h1 className="display-3 text-white"> {data1.calendar_banner_text}</h1>
 
             <h3 className="mx-3 text-white rounded-circle">
-            <FaAngleRight />
-
+                <FaAngleRight />
             </h3>
         </div>
 
 
         {/* calender days */}
-        <div className="container">
-            <div className="d-flex flex-wrap">
+        <div className="container pt-4">
+            <div className="row">
                 {rows()}
             </div>
         </div>

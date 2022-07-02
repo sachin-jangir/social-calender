@@ -1,9 +1,6 @@
 import {useState, useEffect} from "react";
 import Page from "./components/Page";
-import Date from "./components/Date";
-
-
-
+// import Date from "./components/Date";
 
 function App() {
 
@@ -26,14 +23,11 @@ function App() {
     return data;
   }
 
-
   return (
     <div className="row">
       <Page />
     </div>
   );
 }
-
-
 
 export default App;
