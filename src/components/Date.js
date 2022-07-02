@@ -8,22 +8,39 @@ function bgColor(cssString) {
     if(!result) {
         return 'transparent';
     }
-    return result[0];
+    return result[0].substr(18);
+}
+
+function color(cssString) {
+    if(!cssString) {
+        return 'black';
+    }
+    const bgRegex = /color: rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\)/;
+    const result = cssString.match(bgRegex);
+    if(!result) {
+        return 'black';
+    }
+    return result[0].substr(7);
+}
+
+function dateColor(cssString) {
+    const color = bgColor(cssString);
+    return color !== 'transparent' ? color : 'lightgrey';
 }
 
 export default function ({ data }) {
     const calendarImgWidth = 160;
     const calendarImgHeight = 100;
-    console.log(CSSstring(data.card_color));
+    console.log(bgColor(data.card_color));
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3" style={{ marginBottom: (calendarImgHeight / 1.2) + 'px' }}>
             <strong>
-                <small className="text-uppercase mb-2"> {data.day_of_the_week} </small>
-                <p className="display-3 fw-bold"> {data.day_of_the_month}</p>
+                <small className="text-uppercase mb-2" style={{ color: dateColor(data.card_color) }}> {data.day_of_the_week} </small>
+                <p className="display-3 fw-bold" style={{ color: dateColor(data.card_color) }}> {data.day_of_the_month}</p>
             </strong>
             <div
-                style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px', backgroundColor: bgColor(data.card_color) }}
-                className="bg-warning rounded position-relative px-3 pt-3"
+                style={{ paddingBottom: (calendarImgHeight / 1.7) + 'px', backgroundColor: bgColor(data.card_color), color: color(data.card_color) }}
+                className="rounded position-relative px-3 pt-3"
             >
                 <p className="fw-bold">{data.card_header}</p>
                 <p>{data.card_body}</p>
