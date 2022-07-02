@@ -18,21 +18,28 @@ const Page = () => {
         return arr;
       }
 
+      const btnCss = {
+        height: '35px', 
+        width: '35px',
+        backgroundColor: 'rgba(0,0,0,0.5)', 
+        cursor: 'pointer'
+      }
+
   return (
     <div>
+        
 
         {/* main header */}
-        <div className="d-flex justify-content-center align-items-center" style={{height:'300px', background: `url(${data1.calendar_banner_url})` }}>
+        <div className="d-flex justify-content-center align-items-center" style={{  }}>
 
-            <h3 className="mx-3 text-white">
+            <h3 className="mx-3 text-white rounded-circle ps-1" style={ btnCss }>
                 <FaAngleLeft />
             </h3> 
 
             <h1 className="display-3 text-white"> {data1.calendar_banner_text}</h1>
 
-            <h3 className="mx-3 text-white rounded-circle">
-            <FaAngleRight />
-
+            <h3 className="mx-3 text-white rounded-circle ps-1" style={ btnCss }>
+                <FaAngleRight />
             </h3>
         </div>
 
